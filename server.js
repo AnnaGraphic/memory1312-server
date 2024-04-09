@@ -1,15 +1,20 @@
 import cors from 'cors';
-import express from 'express';
 import env from 'dotenv';
+import express from 'express';
 import { getCardsData } from './db.js';
-env.config();
 
 // ----- config -----
 const app = express();
-const { PORT, URI } = process.env;
+env.config();
+const { PORT, CLIENT_URL } = process.env;
 
 // ----- middleware -----
-app.use(cors());
+app.use(cors(
+  {
+    origin: CLIENT_URL,
+  }
+));
+
 app.use(express.json());
 
 // ----- routes -----
