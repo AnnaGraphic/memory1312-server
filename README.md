@@ -20,3 +20,5 @@
 
 ## TODOs:
 ### backend:
+- sockets:
+    - [x] game chat
