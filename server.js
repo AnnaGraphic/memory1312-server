@@ -13,9 +13,10 @@ const { PORT, CLIENT_URL } = process.env;
 const io = new Server(server, { cors: { origin: "*" }});
 
 // ----- middleware -----
+// handle cors for socket.io during developing:
 app.use(cors(
   {
-    origin: "*",
+    origin: CLIENT_URL,
   }
 ));
 
@@ -30,8 +31,32 @@ io.on('connection', (socket) => {
 
   socket.on('chat message', (msg) => {
     console.log(msg);
-  io.emit(msg);
+  io.emit('chat message', msg);
   });
+
+  socket.on('start game', (cardsData) => {
+    console.log("start game");
+    io.emit('game started', cardsData);
+    });
+
+  socket.on('set first card', (card) => {
+    console.log('1st card: ', card.name);
+    io.emit('set first card', card)
+  });
+
+  socket.on('set second card', (card) => {
+    console.log('2nd card: ', card.name);
+    io.emit('set second card', card)
+  });
+
+  socket.on('flip card', (cardId) => {
+    console.log('flip card');
+    io.emit('card flipped', cardId);
+  })
+
+  socket.on('end game', () => {
+    io.emit('game ended');
+  })
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
