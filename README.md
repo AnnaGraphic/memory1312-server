@@ -1,4 +1,4 @@
-#i 🚨memory 1312🚨
+# 🚨memory 1312🚨
 ## project description:
   multiplayer game - 2-? players playing memory
   when a pair is flipped correctly, all players are shown a text on their device that is specifically assigned to that pair.the flipping player's score is increased by one. when all cards are revealed, the game is over and the scores are displayed.
@@ -22,3 +22,12 @@
 ### backend:
 - sockets:
     - [x] game chat
+    - [x] game interactions
+    - [ ] create rooms
+- database:
+  - [ ] store face images of playing cards (aws?)
+  - [ ] add text property to the model
+  - [ ] persist game in database
+- [ ] create game id
+- [ ] establish connection between players with game id
+- [ ] error handling
