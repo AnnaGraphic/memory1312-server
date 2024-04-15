@@ -8,6 +8,7 @@ const CardSchema = new Schema({
   imageUrl: {
     type: String,
     required: true,
-  },  
+  },
+  text: String,
 });
 export const Card = model("Card", CardSchema, "cards");
